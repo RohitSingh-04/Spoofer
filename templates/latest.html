@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Latest Image - FastAPI Gallery</title>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f0f2f5; margin: 0; padding: 20px; color: #333; }
+        .container { max-width: 900px; margin: 0 auto; }
+        .header { display: flex; justify-content: space-between; align-items: center; background: #fff; padding: 20px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); margin-bottom: 20px; }
+        .btn-secondary { background-color: #6c757d; color: white; text-decoration: none; padding: 10px 16px; border-radius: 4px; font-weight: bold; }
+        .btn-secondary:hover { background-color: #5a6268; }
+        
+        /* New styles for the download button */
+        .btn-download { display: inline-block; margin-top: 15px; background-color: #28a745; color: white; text-decoration: none; padding: 10px 20px; border-radius: 4px; font-weight: bold; transition: background-color 0.2s; }
+        .btn-download:hover { background-color: #218838; }
+
+        .single-image-container { display: flex; justify-content: center; }
+        .card { background: #fff; padding: 20px; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); text-align: center; max-width: 600px; width: 100%; }
+        .card img { max-width: 100%; height: auto; max-height: 600px; object-fit: contain; border-radius: 4px; }
+        .card p { font-size: 14px; word-break: break-all; margin: 15px 0 0; color: #555; }
+        .empty-state { text-align: center; padding: 60px; background: #fff; border-radius: 8px; width: 100%; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h2>Most Recent Upload</h2>
+        <a href="/" class="btn-secondary">View All Images</a>
+    </div>
+
+    <div class="single-image-container">
+        {% if image %}
+        <div class="card">
+            <img src="{{ image.url }}" alt="{{ image.filename }}">
+            <p><strong>Filename:</strong> {{ image.filename }}</p>
+            
+            <!-- Download Button -->
+            <a href="{{ image.url }}" download="{{ image.filename }}" class="btn-download">
+                Download Image
+            </a>
+        </div>
+        {% else %}
+        <div class="empty-state">
+            <h3>No images found</h3>
+            <p>Go back to the gallery to upload your first image.</p>
+        </div>
+        {% endif %}
+    </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,23 @@
+[project]
+name = "spoofer"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+authors = [
+    { name = "Rohit Singh", email = "rsingh.py@gmail.com" }
+]
+requires-python = ">=3.11"
+dependencies = [
+    "fastapi[standard]>=0.143.2",
+    "jinja2>=3.1.6",
+    "pillow>=12.3.0",
+    "pynput>=1.8.2",
+    "requests>=2.34.2",
+]
+
+[project.scripts]
+spoofer = "spoofer:main"
+
+[build-system]
+requires = ["uv_build>=0.12.18,<0.13.0"]
+build-backend = "uv_build"
